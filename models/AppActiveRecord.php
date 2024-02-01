@@ -2,7 +2,8 @@
 
 namespace app\models;
 
-use Yii;
+use DateTime;
+use DateTimeInterface;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 
@@ -10,20 +11,11 @@ use yii\db\Expression;
  * Class AppActiveRecord, the base class for all models in the application
  *
  * @package app\models
- * @property int|null created_at
- * @property int|null updated_at
+ * @property mixed created_at
+ * @property mixed updated_at
  */
 class AppActiveRecord extends ActiveRecord
 {
-    /**
-     * @var int|null
-     */
-    protected ?int $updated_at;
-    /**
-     * @var int|null
-     */
-    protected ?int $created_at;
-
     /**
      * Add the TimestampBehavior to the behaviors method
      *
@@ -44,26 +36,18 @@ class AppActiveRecord extends ActiveRecord
     }
 
     /**
-     * Change the format of the created_at and updated_at fields
-     *
-     * @return array|int[]|string[]
+     *  Convert the created_at and updated_at attributes to a human-readable format
      */
-    public function fields(): array
+    public function afterFind()
     {
-        $fields = parent::fields();
+        parent::afterFind();
 
-        if($this->hasAttribute('created_at')) {
-            $fields['created_at'] = function() {
-                return Yii::$app->formatter->asDatetime($this->created_at);
-            };
+        if ($this->hasAttribute('created_at') && $this->created_at !== null) {
+            $this->created_at = (new DateTime())->setTimestamp($this->created_at)->format(DateTimeInterface::ATOM);
         }
-
-        if ($this->hasAttribute('updated_at')) {
-            $fields['updated_at'] = function() {
-                return Yii::$app->formatter->asDatetime($this->updated_at);
-            };
+        if ($this->hasAttribute('updated_at') && $this->updated_at !== null) {
+            $this->updated_at = (new DateTime())->setTimestamp($this->updated_at)->format(DateTimeInterface::ATOM);
         }
-
-        return $fields;
     }
+
 }
