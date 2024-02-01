@@ -51,6 +51,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                // 其他规则...
+                '<controller:\w+>/<action:\w+>/<page:\d+>' => '<controller>/<action>',
             ],
         ],
     ],
