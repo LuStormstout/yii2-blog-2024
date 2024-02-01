@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveQuery;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "categories".
@@ -17,7 +16,7 @@ use yii\db\ActiveRecord;
  *
  * @property Post[] $posts
  */
-class Category extends ActiveRecord
+class Category extends AppActiveRecord
 {
     /**
      * {@inheritdoc}

@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveQuery;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "login_attempts".
@@ -22,7 +21,7 @@ use yii\db\ActiveRecord;
  *
  * @property User $user
  */
-class LoginAttempt extends ActiveRecord
+class LoginAttempt extends AppActiveRecord
 {
     /**
      * {@inheritdoc}

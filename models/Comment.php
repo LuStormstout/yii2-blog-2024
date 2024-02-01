@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveQuery;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "comments".
@@ -22,7 +21,7 @@ use yii\db\ActiveRecord;
  * @property Post $post
  * @property User $user
  */
-class Comment extends ActiveRecord
+class Comment extends AppActiveRecord
 {
     /**
      * {@inheritdoc}
