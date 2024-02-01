@@ -186,19 +186,4 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    /**
-     * @return void
-     */
-    public function actionPostsByAuthor()
-    {
-        
-    }
-
-    /**
-     * @return void
-     */
-    public function actionPostsByCategory()
-    {
-        
-    }
 }
