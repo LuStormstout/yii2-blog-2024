@@ -20,7 +20,7 @@ use yii\helpers\Url;
         <ol class="list-unstyled mb-0">
             <?php if ($categories): ?>
                 <?php foreach ($categories as $category) : ?>
-                    <li><a href="{{ $category.Link }}"><?= $category->name ?></a></li>
+                    <li><a href="<?= Url::to(['index', 'category' => $category->id]) ?>"><?= $category->name ?></a></li>
                 <?php endforeach; ?>
             <?php endif; ?>
             <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->is_admin): ?>
@@ -34,7 +34,7 @@ use yii\helpers\Url;
             <h5>Author</h5>
             <ol class="list-unstyled mb-0">
                 <?php foreach ($admins as $admin): ?>
-                    <li><a href="{{ $user.Link }}"><?= $admin->username ?></a></li>
+                    <li><a href="<?= Url::to(['index', 'author' => $admin->id]) ?>"><?= $admin->username ?></a></li>
                 <?php endforeach; ?>
             </ol>
         </div>
@@ -48,9 +48,9 @@ use yii\helpers\Url;
             <?php if (!Yii::$app->user->isGuest): ?>
 
                 <?php if (Yii::$app->user->identity->is_admin): ?>
-                    <li><a href="<?= Url::to(['article/create']) ?>">Publish</a></li>
+                    <li><a href="<?= Url::to(['post/create']) ?>">Publish</a></li>
                 <?php endif; ?>
-            
+
                 <li class="mt-3">
                     <form action="<?= Url::to(['auth/logout']) ?>" method="post"
                           onsubmit="return confirm('Are you sure you want to log out?')">

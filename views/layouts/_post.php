@@ -10,10 +10,8 @@ use yii\helpers\Url;
         <a class="text-dark text-decoration-none" href="<?= Url::to(['view', 'id' => $post->id]); ?>"><?= $post->title; ?></a>
     </h3>
 
-    <p class="blog-post-meta text-secondary">
-        Published on <?= $post->created_at; ?>
-        By <?= $post->user->username; ?>
-    </p>
+    <!-- Post Meta Template -->
+    <?= $this->render('../layouts/_post_meta', ['post' => $post]); ?>
 
     <hr>
 
